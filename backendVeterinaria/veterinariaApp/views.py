@@ -61,6 +61,7 @@ class Logueo(View):
             
             sesion.save()
             message += "Login Exitoso"
+            status = 200
 #logica de asistencia
             #try:
                 #tipo = "asistencia"
@@ -80,6 +81,9 @@ class Logueo(View):
             message += str(error)
             status = 400
         response = {"message": message, "token":token}
+        print('el error esta antes del return')
+        print(response)
+        print(status)
         return JsonResponse(response,status=status)
 
     def delete(self,request):

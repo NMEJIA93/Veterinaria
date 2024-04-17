@@ -20,3 +20,14 @@ class Sesion(models.Model):
     usuario=models.ForeignKey(PersonalClinica, on_delete=models.CASCADE, null=True)
     token=models.CharField(max_length=200,null=False,default="")
 
+""" 
+class Mascota(models.Model):
+    nombre = models.CharField(max_length=30, null=False)
+    id = models.BigIntegerField(primary_key=True, null=False, blank=False)
+    raza = models.CharField(max_length=30, null=False)
+    Especie = models.CharField(max_length=30, null=False)
+    fecha_nacimiento = models.DateField(null=False)
+    nombrePropietario = models.CharField(max_length=30, null=False)
+    cedulaPropietario = models.BigIntegerField(primary_key=True, null=False, blank=False)
+    telefonoPropietario = models.CharField(max_length=10, null=False)
+    emailPropietario = models.CharField(null=False, max_length=30) """

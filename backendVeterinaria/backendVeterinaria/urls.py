@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from veterinariaApp.views import Logueo
+from veterinariaApp.views import Propietario
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('logueo',Logueo.as_view(),name="login"),
+    path('propietario',Propietario.as_view(),name="propietario"),
+    path('propietario/<id>',Propietario.as_view(),name="propietario")
 ]

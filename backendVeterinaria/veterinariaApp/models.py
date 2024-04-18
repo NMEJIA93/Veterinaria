@@ -31,3 +31,21 @@ class Mascota(models.Model):
     cedulaPropietario = models.BigIntegerField(primary_key=True, null=False, blank=False)
     telefonoPropietario = models.CharField(max_length=10, null=False)
     emailPropietario = models.CharField(null=False, max_length=30) """
+
+#Tablas relacionadas a Mascotas
+
+class PropietarioMascota(models.Model):
+    nombre = models.CharField(max_length=30, null=False)
+    cedula = models.BigIntegerField(primary_key=True, null=False, blank=False)
+    telefono = models.CharField(max_length=10, null=False)
+    email = models.CharField(null=False, max_length=30)
+    direccion = models.CharField(max_length=30, null=True)
+    estado = models.IntegerField(null=False, blank=False,default=1)
+
+class Mascota(models.Model):
+    nombre = models.CharField(max_length=30, null=False)
+    id = models.BigIntegerField(primary_key=True, null=False, blank=False)
+    raza = models.CharField(max_length=30, null=False)
+    Especie = models.CharField(max_length=30, null=False)
+    fecha_nacimiento = models.DateField(null=False)
+    propietario = models.ForeignKey(PropietarioMascota, on_delete=models.CASCADE)

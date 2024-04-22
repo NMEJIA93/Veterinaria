@@ -49,3 +49,4 @@ class Mascota(models.Model):
     Especie = models.CharField(max_length=30, null=False)
     fecha_nacimiento = models.DateField(null=False)
     propietario = models.ForeignKey(PropietarioMascota, on_delete=models.CASCADE)
+    estado = models.IntegerField(null=False, blank=False,default=1)

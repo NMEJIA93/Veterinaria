@@ -62,21 +62,6 @@ class Logueo(View):
             sesion.save()
             message += "Login Exitoso"
             status = 200
-#logica de asistencia
-            #try:
-                #tipo = "asistencia"
-                #Falta validar que la asistencia solo filtre la del dia actual
-                #fechaAsistencia = date.today().strftime('%Y-%m-%d')
-                #asistencia = Asistencia.objects.filter(cedula=personalClinica,fechaRegistro=fechaAsistencia)
-                #if asistencia.exists():
-                #    raise Exception("El usuario ya registro Asistencia")
-                #asistencia = Asistencia(tipo=tipo,cedula=personalClinica,fechaRegistro=fechaAsistencia)
-                #asistencia.save()
-                #message+=" registro de asistencia exitoso"
-               # status = 200
-            #except Exception as error:
-            #    message += str(error)
-            #    status = 200
         except Exception as error:
             message += str(error)
             status = 400
@@ -146,11 +131,8 @@ class Propietario(View):
             validadorGeneral.validarEmail(email)
             validadorGeneral.validarTelefono(telefono)
             validadorGeneral.validarDireccion(direccion)
-            #dd, mm, yyy = fecha_nacimiento.split('/')
-            #fecha_nacimiento = f"{yyy}-{mm}-{dd}"
-            #pacienteActualizado = Paciente(nombre,cedula,fecha_nacimiento, genero, direccion, email, telefono)
             PropietarioActualizado.nombre=nombre
-            #agregar los otros campos del paciente
+            #agregar los otros campos del Propietario
             PropietarioActualizado.telefono=telefono
             PropietarioActualizado.direccion=direccion
             PropietarioActualizado.email=email
@@ -170,7 +152,7 @@ class Propietario(View):
             sesion=Sesion.objects.get(token=token)
             validarRol(sesion,["ADM"])
             body=json.loads(request.body)
-            #parametros Paciente
+            #parametros Propietario
             cedula=body["cedula"]
             nombre = body["nombre"]
             telefono = body["telefono"]    
@@ -185,51 +167,10 @@ class Propietario(View):
             #valida que no exista
             print(propietario_new)
             if propietario_new.exists():
-                raise Exception ("El Propietario ya existe")           
-            #dd, mm, yyy = fecha_nacimiento.split('/')
-            #fecha_nacimiento = f"{yyy}-{mm}-{dd}"
+                raise Exception ("El Propietario ya existe")   
             propietario_new = PropietarioMascota(nombre=nombre,cedula=cedula, direccion=direccion, email=email, telefono=telefono)
             propietario_new.save()
-            #historiaClinica={"_id":propietario_new.cedula,"historias":{}}
-            #collection.insert_one(historiaClinica)
             message= "Propietario Grabado con exito\n"
-            #try:
-            #    nombreContacto = body["nombreContacto"]
-            #    relacion = body["relacion"]
-           #    telefonocontacto = body["telefonocontacto"]
-           #    validadorGeneral.validarNombre(nombreContacto)
-           #    controlPacientes.validarParentesco(relacion)
-           #    validadorGeneral.validarTelefono(telefonocontacto) 
-           #    contacto = informaContacto(paciente = paciente_new,nombre = nombreContacto,relacion = relacion,telefono = telefonocontacto)
-           #    contacto.save()    
-           #    message+="El contacto se registro correctamente\n"
-           #except Exception as error:
-            #    print("Error al registrar el contacto paciente:\n"+str(error))
-            #    raise Exception("Error al registrar el contacto paciente:\n"+str(error)) 
-
-           #if ("idSeguro" in body and "nombreAseguradora" in body and "vigencia"in body) in body:
-           #    try:
-           #        idSeguro = body["idSeguro"]
-           #        nombreAseguradora = body["nombreAseguradora"]
-           #        FechaVigencia = body["vigencia"]
-           #        #estado = body["estado"]
-           #        validadorGeneral.validarNombre(nombreAseguradora)
-           #        controlSeguros.validarPoliza(idSeguro)
-           #        validadorGeneral.validar_fecha(FechaVigencia)
-           #        #validadorGeneral.validarEstado(estado)
-           #        dd, mm, yyy = FechaVigencia.split('/')
-           #        FechaVigencia = f"{yyy}-{mm}-{dd}"
-           #        
-           #        seguro_new = SeguroPaciente.objects.filter(idSeguro=idSeguro)
-           #        if seguro_new.exists():
-           #            raise Exception("Ya Existe un Seguro con este ID")
-           #        seguro_new = SeguroPaciente(idSeguro = idSeguro,nombreAseguradora = nombreAseguradora,paciente = paciente_new,vigencia = FechaVigencia,estado = 1)
-           #        seguro_new.save()    
-           #        message=+" El Seguro se registro correctamente \n"
-           #    except Exception as error:
-           #        print("Error al registrar el Seguro paciente:\n"+str(error))
-           #        raise Exception("Error al registrar el contacto paciente:\n"+str(error)) 
-
             status= 200
         except Exception as error:
             message = str(error)
@@ -237,21 +178,164 @@ class Propietario(View):
         response = {"message":message}
         return JsonResponse(response,status=status)   
     
-    """ def delete(self,request,id):
+    def delete(self,request,id):
         try:
             token = request.META.get('HTTP_TOKEN')
             sesion = Sesion.objects.get(token = token)
             validarRol(sesion,["ADM"])   
-            paciente = Paciente.objects.get(cedula=id)
-            paciente.estado = 0
-            paciente.save()
+            propietario = PropietarioMascota.objects.get(cedula=id)
+            propietario.estado = 0
+            propietario.save()
             message = "usuario Eliminado"
             status=200        
         except Exception as error:
             message=str(error)
             status=400
         response ={"message": message} 
-        return JsonResponse(response,status=status) """
+        return JsonResponse(response,status=status) 
+    
+
+class ModuloMascota(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args: Any, **kwargs: Any):
+        return super().dispatch(request, *args, **kwargs)
+    def get(self,request,id=None):
+        Mascotas = None
+        try:
+            token = request.META.get('HTTP_TOKEN')
+            sesion = Sesion.objects.get(token = token)
+            validarRol(sesion,["ADM"])
+            if id:
+                Mascotas = list(Mascota.objects.filter(id=id,estado=1).values())
+            else:
+                Mascotas = list(Mascota.objects.values())
+                
+            if len(Mascotas)>0:
+                message = "No hay Mascotas registradas"
+            else:
+                message="No hay mascotas registradas"
+                status = 400
+                raise Exception("No hay mascotas registradas")
+            status=200
+        except Exception as error:
+            message = str(error)
+            status = 400
+        response = {"message":message, "Mascotas": Mascotas}
+        return JsonResponse(response,status=status)
+
+    def put(self,request):
+        mascotaActualizada=""
+        try:
+            token = request.META.get('HTTP_TOKEN')
+            sesion=Sesion.objects.get(token=token)
+            validarRol(sesion,["ADM"])
+            body=json.loads(request.body)
+            idMascota=body["idMascota"]            
+            #actualizar datos
+            mascotaActualizada = Mascota.objects.get(id=idMascota)
+            #parametros Mascota
+            nombre = body["nombreMascota"]
+            raza = body["raza"]
+            especie = body["especie"]
+            fecha_nacimiento = body["fechanace"] 
+            dd, mm, yyy = fecha_nacimiento.split('/')
+            fecha_nacimiento = f"{yyy}-{mm}-{dd}"
+            mascotaActualizada.nombre=nombre
+            mascotaActualizada.nombre=raza
+            mascotaActualizada.nombre=especie
+            mascotaActualizada.nombre=fecha_nacimiento
+            mascotaActualizada.save()                                       
+            message= "Mascota Actualizada con Exito"
+            status= 200
+        except Exception as error:
+            message = str(error)
+            status = 400
+        response = {"message":message}
+        return JsonResponse(response,status=status)
+
+    def post(self,request):
+        mascota_new=""
+        try:
+            token = request.META.get('HTTP_TOKEN')
+            sesion=Sesion.objects.get(token=token)
+            validarRol(sesion,["ADM"])
+            body=json.loads(request.body)
+            #parametros Paciente
+            nombre = body["nombreMascota"]
+            id=body["id"]
+            raza = body["raza"]
+            especie = body["especie"]
+            fecha_nacimiento = body["fechanace"] 
+            validadorGeneral.validarNombre(nombre)
+            #faltan validaciones 
+
+            mascota_new=PropietarioMascota.objects.filter(id=id)
+            #valida que no exista
+            print(mascota_new)
+            if mascota_new.exists():
+                raise Exception ("La Mascota Ya Existe")           
+            dd, mm, yyy = fecha_nacimiento.split('/')
+            fecha_nacimiento = f"{yyy}-{mm}-{dd}"
+            if ("nombrePeopietario" in body and "cedula" in body and "telefono"in body and "email"in body and "direccion"in body) in body:
+                try:
+                    #parametros Propietario
+                    cedula=body["cedula"]
+                    nombre = body["nombre"]
+                    telefono = body["telefono"]    
+                    direccion = body["direccion"]         
+                    email = body["email"]
+                    validadorGeneral.validarNombre(nombre)
+                    validadorGeneral.validarCedula(cedula)
+                    validadorGeneral.validarEmail(email)
+                    validadorGeneral.validarTelefono(telefono)
+                    validadorGeneral.validarDireccion(direccion)
+                    propietario_new=PropietarioMascota.objects.filter(cedula=cedula)
+                    #valida que no exista
+                    print(propietario_new)
+                    if propietario_new.exists():
+                        raise Exception ("El Propietario ya existe")
+                    propietario_new = PropietarioMascota(nombre=nombre,cedula=cedula, direccion=direccion, email=email, telefono=telefono)
+                    propietario_new.save()
+                    message= "Propietario Grabado con exito\n"
+                except Exception as error:
+                    print("Error al registrar el contacto paciente:\n"+str(error))
+                    raise Exception("Error al registrar el contacto paciente:\n"+str(error)) 
+                
+            if ("nombrePeopietario" in body ) in body:
+                cedula = body["cedulaPropietario"]
+                validadorGeneral.validarCedula(cedula)
+            #
+            mascota_new = Mascota(nombre=nombre,id=id,raza=raza, Especie=especie, fecha_nacimiento=fecha_nacimiento, propietario=cedula)
+            mascota_new.save()
+            historiaClinica={"_id":mascota_new.id,"historias":{}}
+            carnetVacunas={"_id":mascota_new.id,"historias":{}}
+            collection.insert_one(historiaClinica)
+            collection.insert_one(carnetVacunas)
+            message= "Mascota Grabado con exito\n"
+            status= 200
+        except Exception as error:
+            message = str(error)
+            status = 400
+        response = {"message":message}
+        return JsonResponse(response,status=status)   
+    
+    def delete(self,request,id):
+        try:
+            token = request.META.get('HTTP_TOKEN')
+            sesion = Sesion.objects.get(token = token)
+            validarRol(sesion,["ADM"])   
+            mascota = Mascota.objects.get(id=id)
+            mascota.estado = 0
+            mascota.save()
+            message = "usuario Eliminado"
+            status=200        
+        except Exception as error:
+            message=str(error)
+            status=400
+        response ={"message": message} 
+        return JsonResponse(response,status=status) 
+    
+
     
 
     

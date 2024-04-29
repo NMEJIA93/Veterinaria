@@ -279,8 +279,8 @@ class ModuloMascota(View):
             if ("nombrePeopietario" in body and "cedula" in body and "telefono"in body and "email"in body and "direccion"in body) in body:
                 try:
                     #parametros Propietario
-                    cedula=body["cedula"]
-                    nombre = body["nombre"]
+                    cedula=body["cedulaPropietario"]
+                    nombre = body["nombrePropietario"]
                     telefono = body["telefono"]    
                     direccion = body["direccion"]         
                     email = body["email"]
@@ -301,7 +301,7 @@ class ModuloMascota(View):
                     print("Error al registrar el contacto paciente:\n"+str(error))
                     raise Exception("Error al registrar el contacto paciente:\n"+str(error)) 
                 
-            if ("nombrePeopietario" in body ) in body:
+            if ("cedulaPropietario" in body ) in body:
                 cedula = body["cedulaPropietario"]
                 validadorGeneral.validarCedula(cedula)
             #

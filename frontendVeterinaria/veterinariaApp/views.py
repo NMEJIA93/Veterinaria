@@ -107,7 +107,7 @@ def renderRegistrarMascota(request, id):
         error_message="\nError en view front en def renderRegistrarPaciente\n"+str(error)
         return render(request,'error_template.html',{'id':id,"error_message" : error_message})  
 
-def RegistrarPaciente(request, id):
+def RegistrarMascota(request, id):
     try: 
         ses=Sesion.objects.get(id=id)
         headers={'TOKEN': str(ses.token)}   
@@ -143,7 +143,7 @@ def RegistrarPaciente(request, id):
         error_message="\nError en view front en def RegistrarPaciente\n"+str(error)
         return render(request,'error_template.html',{'id':id,"error_message" : error_message})  
 
-def renderBuscaPaciente(request, id):
+def renderBuscaMascota(request, id):
     try:
         ses=Sesion.objects.get(id=id)
         headers={'token': str(ses.token)}

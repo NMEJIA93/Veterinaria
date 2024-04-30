@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from veterinariaApp.views import renderLogin,login,salir,renderError
-from veterinariaApp.views import renderAdministrativo,renderActualizarPaciente,renderRegistrarMascota,RegistrarPaciente,ActualizarPaciente,renderBuscaPaciente,BuscarPaciente,renderContactoPaciente,renderbuscaContacto,RegistrarContacto,BuscarContactoP,renderPoliza,renderbuscaPoliza,BuscarPoliza,RegistraPoliza
+from veterinariaApp.views import renderAdministrativo,renderActualizarPaciente,renderRegistrarMascota,RegistrarMascota,ActualizarPaciente,renderBuscaMascota,BuscarMascota,renderContactoPaciente,renderbuscaContacto,RegistrarContacto,BuscarContactoP,renderPoliza,renderbuscaPoliza,BuscarPoliza,RegistraPoliza
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,11 +28,11 @@ urlpatterns = [
     #rutas para el rol Auxiliar Administrativo  
     path ('ADM/<id>', renderAdministrativo),
     #path ('actualizarPaciente/<id>', renderActualizarPaciente),
-    #path ('registrarMascota/<id>', renderRegistrarMascota),
-    #path ('registrarPaciente1/<id>', RegistrarPaciente),
+    path ('registrarMascota/<id>', renderRegistrarMascota),
+    path ('registrarMascota1/<id>', RegistrarMascota),
     #path ('actualizarPaciente1/<id>', ActualizarPaciente),
-    #path ('buscaPaciente/<id>', renderBuscaPaciente),
-    #path ('buscaPaciente1/<id>', BuscarPaciente),   
+    path ('buscaMascota/<id>', renderBuscaMascota),
+    path ('buscaMascota1/<id>', BuscarMascota),   
    # path ('contactoPaciente/<id>', renderContactoPaciente),
     #path ('buscaContacto/<id>', renderbuscaContacto),
     #path ('contactoPaciente1/<id>', RegistrarContacto),

@@ -1,65 +1,52 @@
 <!-- error_template.html -->
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../static/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../static/img/favicon.png">
     <title>Error</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            text-align: center;
-        }
-        .error-container {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            margin: 50px auto;
-            padding: 20px;
-            width: 400px;
-        }
-        h1 {
-            color: #ffffff;
-        }
-        h2 {
-            color: #d84824;
-        }        
-        p {
-            color: #666;
-        }
-        a {
-            color: #0f2046;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .banner {
-            background-color: #1b049c;
-            color: #fff;
-            padding: 10px;
-        }
-        .footer {
-            background-color: #170388;
-            color: #fff;
-            padding: 10px;
-        }
-    </style>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!-- Nucleo Icons -->
+    <link href="../static/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../static/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" />
+    <link href="../static/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="../static/css/argon-design-system.css?v=1.2.2" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/Style.css">
 </head>
+
 <body>
-    <div class="banner">
-        <h1>CLINICA SANTA CLAUSE</h1>
-    </div>
-    <form class="row" role="form" method="get" action="/error/{{id}}">
-        <div class="error-container">
-            <h2>¡Ups! Ha ocurrido un error</h2>
-            <p>{{error_message}}</p>
-            <!-- aqui se llama la clave del diccionario -->
-            <button type="submit" class="btn btn-primary my-4">Regresar</button> 
-        </div>
-    </form>
-    <div class="footer">
-        <p>&copy; 2023 Corazones Sanos</p>
-    </div>
+    <div class="background">
+        <form class="row" role="form" method="get" action="/error/{{id}}">
+            <div class="error-container" style="width: 35rem; border: 1px solid gray ;">
+                <div class="card-body">
+                    <h2>¡Ups! Ha ocurrido un error</h2>
+                    <p>{{error_message}}</p>
+                    <button type="submit" class="btn btn-primary my-4">Regresar</button>
+                </div>
+            </div>
+        </form>
+    </div>`
+
+    <!--   Core JS Files   -->
+    <script src="../static/js/core/jquery.min.js" type="text/javascript"></script>
+    <script src="../static/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="../static/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="../static/js/plugins/bootstrap-switch.js"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="../static/js/plugins/nouislider.min.js" type="text/javascript"></script>
+    <script src="../static/js/plugins/moment.min.js"></script>
+    <script src="../static/js/plugins/datetimepicker.js" type="text/javascript"></script>
+    <script src="../static/js/plugins/bootstrap-datepicker.min.js"></script>
 </body>
+
 </html>

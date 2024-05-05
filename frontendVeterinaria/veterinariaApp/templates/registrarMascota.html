@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../static/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../static/img/favicon.png">
   <title>
-    Registrar Paciente
+    Registrar_Mascota
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -19,59 +20,18 @@
   <link href="../static/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../static/css/argon-design-system.css?v=1.2.2" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/Style.css">
 </head>
-<body class="profile-page">
-  <!-- Navbar -->
-  <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light py-2">
+
+<body style="background-image: url(../static/img/theme/Background\ Administrativa.jpg); background;">
+  <nav class="navbar" style="background-image: linear-gradient(rgb(13, 110, 253),rgb(119, 167, 239));">
     <div class="container">
-      <div class="navbar-collapse collapse" id="navbar_global">
-        <div class="navbar-collapse-header">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-            </div>
-            <div class="col-6 collapse-close">
-            </div>
-          </div>
-        </div>
-        <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-          <li class="nav-item ">
-            <a href="/registrarPaciente/{{id}}" class="nav-link"  role="button">
-              <i class="ni ni-ui-04 d-lg-none"></i>
-              <span class="nav-link-inner--text">Registrar Paciente</span>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a href="/actualizarPaciente/{{id}}" class="nav-link" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Actualizar Paciente</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/buscaContacto/{{id}}" class="nav-link"   role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Contacto Paciente</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/buscaPoliza/{{id}}" class="nav-link"   role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Poliza Medica</span>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a href="/factura/{{id}}" class="nav-link" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">Facturacion</span>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a href="/login/{{id}}" class="nav-link" role="button">
-              <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text btn-primary p-2">X</span>
-            </a>
-          </li>          
-        </ul>
-      </div>
+      <a class="navbar-brand" href="#" style="">
+        <img src="../static/img/icons/Logo text.png" alt="Logo" style="width: 150px; height: 40px; border-radius: 7%;">
+      </a>
+      <a href="/login/{{id}}" class="btn btn-danger">
+        <i class="fa fa-sign-out"></i>
+      </a>
     </div>
   </nav>
   <!-- End Navbar -->
@@ -86,26 +46,26 @@
         <div class="card card-profile shadow mt--300">
           <div class="px-4">
             <div class="text-center mt-3">
-              <h3>REGISTRAR PACIENTE</h3>
+              <h3>REGISTRAR PROPIETARIO</h3>
 		          <form class="row" role="form" method="get" action="/registrarPaciente1/{{id}}">
                 {% csrf_token %}            
                 <div class="col-6">
                   <div class='mb-4 text-left ml-10'>
-                    <label class='block text-gray-900 text-sm font-bold mb-2 ml-50'>Cedula del Paciente </label>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 ml-50'>Cedula del Propietario </label>
                     <input
                       class='form-control1 '
-                      id="cedulaPaciente"
+                      id="cedulaPropietario"
                       type="text"
                       min="0"
-                      placeholder='Identificación Paciente'
-                      name="cedulaPaciente"
+                      placeholder='Identificación Propietario'
+                      name="cedulaPropietario"
                       required
                     />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Nombre completo del Paciente </label>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Nombre completo del Propietario </label>
                     <input
                       class='form-control1'
                       id="nombre"
@@ -118,7 +78,7 @@
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Dirección del Paciente </label>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Dirección del Propietario </label>
                     <input
                       class='form-control1'
                       id="direccion"
@@ -131,7 +91,7 @@
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Teléfono del Paciente </label>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Teléfono del Propietario </label>
                     <input
                       class='form-control1'
                       id="telefono"
@@ -144,7 +104,7 @@
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Correo Electrónico del Paciente </label>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Correo Electrónico del Propietario </label>
                     <input
                       class='form-control1'
                       id="email"
@@ -157,7 +117,7 @@
                 </div>
                 <div class="col-3">
                   <div class='mb-4 text-left'>
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Fecha Nacimiento Paciente </label>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Fecha Nacimiento Propietario </label>
                     <input
                       class='form-control1'
                       id="fechanace"
@@ -170,56 +130,137 @@
                 </div>
                 <div class="col-3">
                   <div class="input-group input-group-alternative">
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Género del Paciente </label>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Género</label>
                     <select class="form-control1" id="genero" name="genero">
-<<<<<<< HEAD
-                      <option value="">Elegir</option>
-=======
                       <option value="">Elegir Género</option>
->>>>>>> feature/ADRIANA
                       <option value="M">Femenino</option>
                       <option value="H">Masculino</option>
                     </select>
                   </div>
                 </div>
-                <div class="row">  
+                <d class="row">  
                   <div class="col-12">
                     <hr class="mb-2 bg-danger border-2 border-top border-danger"/>  
-                    <h3>Datos del Contacto</h3>                    
+                    <h3>DATOS DE LA MASCOTA</h3>                    
                   </div>
                   <div class="col-5">
                     <div class='mb-4 text-left'>
-                      <label for="ncontacto" class='block text-gray-900 text-sm font-bold mb-2 '>Nombre del Contacto </label>
+                      <label for="ncontacto" class='block text-gray-900 text-sm font-bold mb-2 '>Nombre de la Mascota </label>
                       <input
                         class='form-control1'
-                        id="ncontacto"
+                        id="nombreMascota"
                         type="text"
-                        placeholder='Nombre del Contacto'
-                        name="ncontacto"
+                        placeholder='Nombre de la Mascota '
+                        name="nombreMascota"
                       />
                     </div>
                   </div>
                   <div class="col-4">
                     <div class='mb-4 text-left'>
-                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Parentesco con el Paciente</label>
+                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Identificacion</label>
                       <input
                         class='form-control1'
-                        id="pariente"
+                        id="id"
                         type="text"
-                        placeholder='Parentesco'
-                        name="pariente"
+                        placeholder='Identificacion'
+                        name="id"
                       />
                     </div>
                   </div>
                   <div class="col-3">
                     <div class='mb-4 text-left'>
-                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Teléfono del Contacto </label>
+                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Fecha Nacimiento Mascota </label>
                       <input
                         class='form-control1'
-                        id="telefonoc"
+                        id="fechanace"
+                        type="date"
+                        placeholder='Fecha de Nacimiento'
+                        name="fechanace"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class='mb-4 text-left'>
+                      <label for="ncontacto" class='block text-gray-900 text-sm font-bold mb-2 '>Raza </label>
+                      <input
+                        class='form-control1'
+                        id="raza"
+                        type="text"
+                        placeholder='Raza'
+                        name="raza"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class='mb-4 text-left'>
+                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Especie</label>
+                      <input
+                        class='form-control1'
+                        id="especie"
+                        type="text"
+                        placeholder='Especie'
+                        name="especie"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class='mb-4 text-left'>
+                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Cedula Propietario </label>
+                      <input
+                        class='form-control1'
+                        id="cedulaPropietario"
                         type="number"
-                        placeholder='Celular/Telefono'
-                        name="telefonoc"
+                        placeholder='Cedula Propietario'
+                        name="cedulaPropietario"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class='mb-4 text-left'>
+                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Nombre Propietario </label>
+                      <input
+                        class='form-control1'
+                        id="nombrePropietario"
+                        type="number"
+                        placeholder='Nombre Propietario'
+                        name="nombrePropietario"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class='mb-4 text-left'>
+                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Telefono </label>
+                      <input
+                        class='form-control1'
+                        id="telefono"
+                        type="number"
+                        placeholder='Telefono'
+                        name="telefono"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class='mb-4 text-left'>
+                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Direccion </label>
+                      <input
+                        class='form-control1'
+                        id="direccion"
+                        type="number"
+                        placeholder='Direccion'
+                        name="direccion"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class='mb-4 text-left'>
+                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Correo Electronico </label>
+                      <input
+                        class='form-control1'
+                        id="email"
+                        type="number"
+                        placeholder='Correo Electronico'
+                        name="email"
                       />
                     </div>
                   </div>

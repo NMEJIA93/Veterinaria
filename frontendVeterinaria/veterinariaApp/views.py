@@ -118,7 +118,7 @@ def renderRegistrarMascota(request, id):
             print("Enviar Error ")
             print("\nError en view front en def renderRegistrarPaciente\n")
             raise Exception("rol no valido")
-        return render(request, "registrarPaciente.html", {"id": id})
+        return render(request, "registrarMascota.html", {"id": id})
     except Exception as error:
         error_message = "\nError en view front en def renderRegistrarPaciente\n" + str(
             error
@@ -202,7 +202,7 @@ def BuscarMascota(request, id):
             messages.add_message(request, messages.SUCCESS, "Paciente Encontrado")
             return render(
                 request,
-                "actualizarPaciente.html",
+                "actualizarMascota.html",
                 {"id": id, "personas": response["Pacientes"]},
             )
         raise Exception(response["message"])

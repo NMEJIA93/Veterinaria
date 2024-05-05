@@ -338,10 +338,10 @@ class ModuloMascota(View):
 
 class ModuloPersonalClinica(View):
     @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args: Any,**kwargs:Any):
+    def dispatch(self, request, *args: Any, **kwargs: Any):
         return super().dispatch(request, *args, **kwargs)
     
-    def get(self, request, id=None):
+    def get(self,request,id=None):
         personalClinica = None
         try:
             token = request.META.get('HTTP_TOKEN')
@@ -360,11 +360,10 @@ class ModuloPersonalClinica(View):
                 raise Exception("Registros Personal clinica no encontrados")
             status=200
         except Exception as error:
-            message='Error al buscar personal clinica - persona no encontrada'
+            message = str(error)
             status = 400
-            raise Exception('Registros no encontrados')
-        response = {"message":  message, "Empleados": personalClinica}
-        return JsonResponse(response,status)
+        response = {"message":message, "Empleados": personalClinica}
+        return JsonResponse(response,status=status)
     
     def post(self,request):
         try:

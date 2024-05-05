@@ -18,6 +18,8 @@ from django.urls import path
 from veterinariaApp.views import Logueo
 from veterinariaApp.views import Propietario
 from veterinariaApp.views import ModuloMascota
+from veterinariaApp.views import ModuloPersonalClinica
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +27,7 @@ urlpatterns = [
     path('propietario',Propietario.as_view(),name="Modulo propietario"),
     path('propietario/<id>',Propietario.as_view(),name="Modulo propietario"),
     path('mascota',ModuloMascota.as_view(),name="Modulo Mascota"),
-    path('mascota/<id>',ModuloMascota.as_view(),name="Modulo Mascota")
+    path('mascota/<id>',ModuloMascota.as_view(),name="Modulo Mascota"),
+    path('usuarioClinica',ModuloPersonalClinica.as_view(),name="modulo usuario Recursos Humanos"),
+    path('usuarioClinica/<id>',ModuloPersonalClinica.as_view(),name="Busca_empleado"),
 ]

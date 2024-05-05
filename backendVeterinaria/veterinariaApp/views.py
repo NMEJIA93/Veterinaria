@@ -319,7 +319,7 @@ class ModuloMascota(View):
         response = {"message":message}
         return JsonResponse(response,status=status)   
     
-    def delete(self,request,id):
+def delete(self,request,id): 
         try:
             token = request.META.get('HTTP_TOKEN')
             sesion = Sesion.objects.get(token = token)
@@ -334,6 +334,134 @@ class ModuloMascota(View):
             status=400
         response ={"message": message} 
         return JsonResponse(response,status=status) 
+    
+
+class ModuloPersonalClinica(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args: Any, **kwargs: Any):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get(self,request,id=None):
+        personalClinica = None
+        try:
+            token = request.META.get('HTTP_TOKEN')
+            sesion = Sesion.objects.get(token = token)
+            validarRol(sesion,["RH"])
+            if id:
+                personalClinica = list(PersonalClinica.objects.filter(cedula=id,estado=1).values())
+            else:
+                personalClinica = list(PersonalClinica.objects.values())
+            print(personalClinica)    
+            if len(personalClinica)>0:
+                message = "registros encontrados"
+            else:
+                message="registros Personal clinica no encontrados"
+                status = 400
+                raise Exception("Registros Personal clinica no encontrados")
+            status=200
+        except Exception as error:
+            message = str(error)
+            status = 400
+        response = {"message":message, "Empleados": personalClinica}
+        return JsonResponse(response,status=status)
+    
+    def post(self,request):
+        try:
+            token = request.META.get('HTTP_TOKEN')
+            sesion = Sesion.objects.get(token = token)
+            validarRol(sesion,["RH"])
+            body = json.loads(request.body)
+            nombre = body["nombre"]
+            cedula = body["cedula"]
+            email = body["email"]
+            telefono = body["telefono"]
+            fecha_nacimiento = body["fechanace"]
+            direccion = body["direccion"]
+            rol = body["rol"]
+            usuario = body["usuario"]
+            password = body["password"]
+            
+            validadorGeneral.validarNombre(nombre)
+            validadorGeneral.validarCedula(cedula)
+            validadorGeneral.validarEmail(email)
+            validadorGeneral.validarTelefono(telefono)
+            validadorGeneral.validar_fecha(fecha_nacimiento)
+            validadorPersonalClinica.validarDatosUsuario(rol,usuario,password)
+            validadorGeneral.ValidarPassword(password)
+            empleado_new = PersonalClinica.objects.filter(cedula=cedula)
+            if empleado_new.exists():
+                raise Exception("Ya Existe un empleado registrado con esa Cedula")
+            empleado_new = PersonalClinica.objects.filter(usuario=usuario)
+            if empleado_new.exists():
+                raise Exception("Ya Existe un empleado registrado con ese Usuario")
+            dd, mm, yyy = fecha_nacimiento.split('/')
+            fecha_nacimiento = f"{yyy}-{mm}-{dd}"
+            empleado_new = PersonalClinica(nombre=nombre,cedula=cedula,email=email,telefono=telefono,fecha_nacimiento=fecha_nacimiento,direccion=direccion,rol=rol,usuario=usuario,password=password,estado=1)
+            empleado_new.save()
+            message = "usuario Registrado"
+            status=200        
+        except Exception as error:
+            message=str(error)
+            status=400
+        response ={"message": message}
+        return JsonResponse(response,status=status)
+    
+    def put(self,request):
+        try:
+            token = request.META.get('HTTP_TOKEN')
+            sesion = Sesion.objects.get(token = token)
+            validarRol(sesion,["RH"])
+            body = json.loads(request.body)
+            nombre = body["nombre"]
+            cedula = body["cedula"]
+            email = body["email"]
+            telefono = body["telefono"]
+            fecha_nacimiento = body["fechanace"]
+            direccion = body["direccion"]
+            rol = body["rol"]
+            usuario = body["usuario"]
+            password = body["password"]
+            validadorGeneral.validarNombre(nombre)
+            #validadorGeneral.validarCedula(cedula)
+            validadorGeneral.validarEmail(email)
+            validadorGeneral.validarTelefono(telefono)
+            validadorGeneral.validar_fecha(fecha_nacimiento)
+            validadorPersonalClinica.validarDatosUsuario(rol,usuario,password)
+            validadorGeneral.ValidarPassword(password)
+            dd, mm, yyy = fecha_nacimiento.split('/')
+            fecha_nacimiento = f"{yyy}-{mm}-{dd}"
+            empleado_Actualizado = PersonalClinica.objects.get(cedula=cedula)
+            empleado_Actualizado.nombre = nombre
+            empleado_Actualizado.email = email
+            empleado_Actualizado.fecha_nacimiento = fecha_nacimiento
+            empleado_Actualizado.direccion = direccion
+            empleado_Actualizado.rol = rol
+            empleado_Actualizado.usuario = usuario
+            empleado_Actualizado.password = password
+            empleado_Actualizado.save()
+            message = "usuario Actualizado"
+            status=200        
+        except Exception as error:
+            message=str(error)
+            status=400
+        response ={"message": message}
+        return JsonResponse(response,status=status)
+            
+    def delete(self,request,id):
+        try:
+            token = request.META.get('HTTP_TOKEN')
+            sesion = Sesion.objects.get(token = token)
+            validarRol(sesion,["RH"])   
+            empleado_Eliminado = PersonalClinica.objects.get(cedula=id)
+            empleado_Eliminado.estado = 0
+            empleado_Eliminado.save()
+            message = "usuario Eliminado"
+            status=200        
+        except Exception as error:
+            message=str(error)
+            status=400
+        response ={"message": message} 
+        return JsonResponse(response,status=status)
     
 
     

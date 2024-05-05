@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from veterinariaApp.views import renderLogin,login,salir,renderError
 from veterinariaApp.views import renderAdministrativo,renderActualizarPaciente,renderRegistrarMascota,RegistrarMascota,ActualizarPaciente,renderBuscaMascota,BuscarMascota,renderContactoPaciente,renderbuscaContacto,RegistrarContacto,BuscarContactoP,renderPoliza,renderbuscaPoliza,BuscarPoliza,RegistraPoliza
+from veterinariaApp.views import renderRH,renderRegistrarEmpleado,RegistrarEmpleado,renderBuscaEmpleado,BuscarEmpleado,renderActualizarEmpleado,ActualizarEmpleado,renderInactivarEmpleado,BuscarInactivar,InactivarEmpleado,renderBuscaEmpleadoN,BuscarEmpleadoN,renderLicenciaEmpleado,licenciaEmpleado,renderMuestraEmpleado,renderAsistencias
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,8 +40,21 @@ urlpatterns = [
     #path ('buscaContacto/<id>', renderbuscaContacto),
     #path ('contactoPaciente1/<id>', RegistrarContacto),
     #path ('buscaContactoP/<id>', BuscarContactoP),
-    #path ('poliza/<id>', renderPoliza),
-   # path ('buscaPoliza/<id>', renderbuscaPoliza),
-   # path ('poliza1/<id>', BuscarPoliza),
-    #path ('poliza2/<id>', RegistraPoliza)
+    #rutas para el rol recursos humanos
+    path ('RH/<id>', renderRH),
+    path('registrarEmpleado/<id>', renderRegistrarEmpleado),
+    path('registrarEmpleado1/<id>', RegistrarEmpleado),
+    path('buscaEmpleado/<id>', renderBuscaEmpleado),
+    path('buscaEmpleado1/<id>', BuscarEmpleado),    
+    path('actualizarEmpleado/<id>', renderActualizarEmpleado),
+    path('actualizarEmpleado1/<id>', ActualizarEmpleado),   
+    path('inactivarEmpleado/<id>', renderInactivarEmpleado),
+    path('inactivarEmpleado1/<id>', BuscarInactivar),
+    path('inactivarEmpleado2/<id>', InactivarEmpleado),
+    path('buscaEmpleadoN/<id>', renderBuscaEmpleadoN),
+    path('buscaEmpleadoN1/<id>', BuscarEmpleadoN),
+    path('licenciaEmpleado/<id>', renderLicenciaEmpleado),
+    path('licenciaEmpleado1/<id>', licenciaEmpleado),
+    path('muestraEmpleado/<id>', renderMuestraEmpleado),
+    path('asistencias/<id>', renderAsistencias),
 ]

@@ -14,7 +14,7 @@ class PersonalClinica(models.Model):
     password = models.CharField(null=False, blank=False, max_length=20)
     estado = models.IntegerField(null=False, blank=False)
 
-
+# Modelo de la tabla Sesion en la Base de Datos
 class Sesion(models.Model):
     id=models.AutoField(primary_key=True)
     usuario=models.ForeignKey(PersonalClinica, on_delete=models.CASCADE, null=True)

@@ -319,7 +319,7 @@ class ModuloMascota(View):
         response = {"message":message}
         return JsonResponse(response,status=status)   
     
-    def delete(self,request,id):
+def delete(self,request,id): 
         try:
             token = request.META.get('HTTP_TOKEN')
             sesion = Sesion.objects.get(token = token)

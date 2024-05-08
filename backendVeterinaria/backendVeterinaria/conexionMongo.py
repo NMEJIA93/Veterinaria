@@ -1,5 +1,6 @@
 import pymongo
 
+
 mongo_host = 'localhost'  # Dirección IP o nombre del host de MongoDB
 mongo_port = 27017  # Puerto de MongoDB por defecto
 mongo_db_name = 'Veterinaria'  # Nombre de la base de datos

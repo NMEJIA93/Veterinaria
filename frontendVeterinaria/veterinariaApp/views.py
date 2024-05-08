@@ -497,7 +497,7 @@ def renderRH(request, id):
         if response["rol"] != "RH":
             print("Enviar Error ")
             raise Exception("Tu rol debe ser RH")
-        return render(request, "personalClinica.html", {"id": id})
+        return render(request, "personalVeterinaria.html", {"id": id})
     except Exception as error:
         error_message = "\nError en view front en def renderRH: \n" + str(error)
         return render(
@@ -553,7 +553,7 @@ def RegistrarEmpleado(request, id):
         print(respuesta.status_code)
         if respuesta.status_code == 200:
             messages.add_message(request, messages.SUCCESS, "Empleado registrado")
-            return render(request, "personalClinica.html", {"id": id})
+            return render(request, "personalVeterinaria.html", {"id": id})
         else:
             raise Exception(str(response["message"]))
     except Exception as error:

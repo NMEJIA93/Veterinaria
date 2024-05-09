@@ -132,7 +132,7 @@ def RegistrarMascota(request, id):
     try:
         ses = Sesion.objects.get(id=id)
         headers = {"TOKEN": str(ses.token)}
-        api_url = "http://127.0.0.1:8000/paciente"
+        api_url = "http://127.0.0.1:8000/mascota"
         fechanace = request.GET["fechanace"]
         fecha_obj = datetime.strptime(fechanace, "%Y-%m-%d")
         fechanace = fecha_obj.strftime("%d/%m/%Y")

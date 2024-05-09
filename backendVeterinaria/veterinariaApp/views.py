@@ -10,6 +10,7 @@ from .models import PersonalClinica,Sesion,PropietarioMascota,Mascota
 from .models import Medicamento,Orden,OrdenMedicamento,Procedimiento,OrdenProcedimiento
 from .models import Ayuda,OrdenAyudaDiagnostica
 from backendVeterinaria.conexionMongo import collection
+from backendVeterinaria.conexionMongo import collection1
 import json,secrets,string
 from .helpers import validadorGeneral, validadorPersonalClinica, controlPacientes, validadorNovedades,validadorEnfermeras, controlSeguros, controlFacturas, validadorOrdenes
 from .helpers import controlOrdenes, controlPersonalClinica, validadorMedicos
@@ -311,7 +312,7 @@ class ModuloMascota(View):
             historiaClinica={"_idHistoria":mascota_new.id,"historias":{}}
             carnetVacunas={"_idCarnet":mascota_new.id,"historias":{}}
             collection.insert_one(historiaClinica)
-            collection.insert_one(carnetVacunas)
+            collection1.insert_one(carnetVacunas)
             message= "Mascota Grabado con exito\n"
             status= 200
         except Exception as error:

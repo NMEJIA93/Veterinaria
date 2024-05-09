@@ -23,10 +23,10 @@
   <link rel="stylesheet" href="../static/css/Style.css">
 </head>
 
-<body style="background-image: url(../static/img/theme/Background\ Administrativa.jpg); background;">
+<body style="background-image: url(../static/img/theme/Background\ Administrativa.jpg); ">
   <nav class="navbar" style="background-image: linear-gradient(rgb(13, 110, 253),rgb(119, 167, 239));">
     <div class="container">
-      <a class="navbar-brand" href="#" style="">
+      <a class="navbar-brand" href="#">
         <img src="../static/img/icons/Logo text.png" alt="Logo" style="width: 150px; height: 40px; border-radius: 7%;">
       </a>
       <a href="/login/{{id}}" class="btn btn-danger">
@@ -38,7 +38,7 @@
   <div class="wrapper">
     <section class="section-profile-cover section-shaped my-0">
       <!-- Circles background -->
-      <img class="bg-image"  src="../static/img/pages/mohamed.jpg" style="width: 100%;">
+      <img class="bg-image" src="../static/img/pages/mohamed.jpg" style="width: 100%;">
       <!-- SVG separator -->
     </section>
     <section class="section bg-secondary">
@@ -47,224 +47,82 @@
           <div class="px-4">
             <div class="text-center mt-3">
               <h3>REGISTRAR PROPIETARIO</h3>
-		          <form class="row" role="form" method="get" action="/registrarPaciente1/{{id}}">
-                {% csrf_token %}            
+              <form class="row" role="form" method="get" action="/registrarPaciente1/{{id}}">
+                {% csrf_token %}
                 <div class="col-6">
                   <div class='mb-4 text-left ml-10'>
                     <label class='block text-gray-900 text-sm font-bold mb-2 ml-50'>Cedula del Propietario </label>
-                    <input
-                      class='form-control1 '
-                      id="cedulaPropietario"
-                      type="text"
-                      min="0"
-                      placeholder='Identificación Propietario'
-                      name="cedulaPropietario"
-                      required
-                    />
+                    <input class='form-control1 ' id="cedulaPropietario" type="text" min="0"
+                      placeholder='Identificación Propietario' name="cedulaPropietario" required />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
                     <label class='block text-gray-900 text-sm font-bold mb-2 '>Nombre completo del Propietario </label>
-                    <input
-                      class='form-control1'
-                      id="nombre"
-                      type="text"
-                      placeholder='Nombre completo'
-                      name="nombre"
-                      required
-                    />
+                    <input class='form-control1' id="nombre" type="text" placeholder='Nombre completo' name="nombre"
+                      required />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
                     <label class='block text-gray-900 text-sm font-bold mb-2 '>Dirección del Propietario </label>
-                    <input
-                      class='form-control1'
-                      id="direccion"
-                      type="text"
-                      placeholder='Direccion'
-                      name="direccion"
-                      required
-                    />
+                    <input class='form-control1' id="direccion" type="text" placeholder='Direccion' name="direccion"
+                      required />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
                     <label class='block text-gray-900 text-sm font-bold mb-2 '>Teléfono del Propietario </label>
-                    <input
-                      class='form-control1'
-                      id="telefono"
-                      type="number"
-                      placeholder='Celular/Telefono'
-                      name="telefono"
-                      required
-                    />
+                    <input class='form-control1' id="telefono" type="number" placeholder='Celular/Telefono'
+                      name="telefono" required />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Correo Electrónico del Propietario </label>
-                    <input
-                      class='form-control1'
-                      id="email"
-                      type="email"
-                      placeholder='Email'
-                      name="email"
-                      required
-                    />
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Correo Electrónico del Propietario
+                    </label>
+                    <input class='form-control1' id="email" type="email" placeholder='Email' name="email" required />
                   </div>
                 </div>
-                <div class="col-3">
-                  <div class='mb-4 text-left'>
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Fecha Nacimiento Propietario </label>
-                    <input
-                      class='form-control1'
-                      id="fechanace"
-                      type="date"
-                      placeholder='Fecha de Nacimiento'
-                      name="fechanace"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="col-3">
-                  <div class="input-group input-group-alternative">
-                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Género</label>
-                    <select class="form-control1" id="genero" name="genero">
-                      <option value="">Elegir Género</option>
-                      <option value="M">Femenino</option>
-                      <option value="H">Masculino</option>
-                    </select>
-                  </div>
-                </div>
-                <d class="row">  
+                <div class="row">
                   <div class="col-12">
-                    <hr class="mb-2 bg-danger border-2 border-top border-danger"/>  
-                    <h3>DATOS DE LA MASCOTA</h3>                    
+                    <hr class="mb-2 bg-danger border-2 border-top border-danger" />
+                    <h3>DATOS DE LA MASCOTA</h3>
                   </div>
                   <div class="col-5">
                     <div class='mb-4 text-left'>
-                      <label for="ncontacto" class='block text-gray-900 text-sm font-bold mb-2 '>Nombre de la Mascota </label>
-                      <input
-                        class='form-control1'
-                        id="nombreMascota"
-                        type="text"
-                        placeholder='Nombre de la Mascota '
-                        name="nombreMascota"
-                      />
+                      <label for="ncontacto" class='block text-gray-900 text-sm font-bold mb-2 '>Nombre de la Mascota
+                      </label>
+                      <input class='form-control1' id="nombreMascota" type="text" placeholder='Nombre de la Mascota '
+                        name="nombreMascota" />
                     </div>
                   </div>
                   <div class="col-4">
                     <div class='mb-4 text-left'>
                       <label class='block text-gray-900 text-sm font-bold mb-2 '>Identificacion</label>
-                      <input
-                        class='form-control1'
-                        id="id"
-                        type="text"
-                        placeholder='Identificacion'
-                        name="id"
-                      />
+                      <input class='form-control1' id="idMascota" type="text" placeholder='Identificacion' name="idMascota" />
                     </div>
                   </div>
                   <div class="col-3">
                     <div class='mb-4 text-left'>
                       <label class='block text-gray-900 text-sm font-bold mb-2 '>Fecha Nacimiento Mascota </label>
-                      <input
-                        class='form-control1'
-                        id="fechanace"
-                        type="date"
-                        placeholder='Fecha de Nacimiento'
-                        name="fechanace"
-                        required
-                      />
+                      <input class='form-control1' id="fechanace" type="date" placeholder='Fecha de Nacimiento'
+                        name="fechanace" required />
                     </div>
                   </div>
                   <div class="col-3">
                     <div class='mb-4 text-left'>
                       <label for="ncontacto" class='block text-gray-900 text-sm font-bold mb-2 '>Raza </label>
-                      <input
-                        class='form-control1'
-                        id="raza"
-                        type="text"
-                        placeholder='Raza'
-                        name="raza"
-                      />
+                      <input class='form-control1' id="raza" type="text" placeholder='Raza' name="raza" />
                     </div>
                   </div>
                   <div class="col-3">
                     <div class='mb-4 text-left'>
                       <label class='block text-gray-900 text-sm font-bold mb-2 '>Especie</label>
-                      <input
-                        class='form-control1'
-                        id="especie"
-                        type="text"
-                        placeholder='Especie'
-                        name="especie"
-                      />
+                      <input class='form-control1' id="especie" type="text" placeholder='Especie' name="especie" />
                     </div>
                   </div>
-                  <div class="col-3">
-                    <div class='mb-4 text-left'>
-                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Cedula Propietario </label>
-                      <input
-                        class='form-control1'
-                        id="cedulaPropietario"
-                        type="number"
-                        placeholder='Cedula Propietario'
-                        name="cedulaPropietario"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-3">
-                    <div class='mb-4 text-left'>
-                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Nombre Propietario </label>
-                      <input
-                        class='form-control1'
-                        id="nombrePropietario"
-                        type="number"
-                        placeholder='Nombre Propietario'
-                        name="nombrePropietario"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-3">
-                    <div class='mb-4 text-left'>
-                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Telefono </label>
-                      <input
-                        class='form-control1'
-                        id="telefono"
-                        type="number"
-                        placeholder='Telefono'
-                        name="telefono"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-3">
-                    <div class='mb-4 text-left'>
-                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Direccion </label>
-                      <input
-                        class='form-control1'
-                        id="direccion"
-                        type="number"
-                        placeholder='Direccion'
-                        name="direccion"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-3">
-                    <div class='mb-4 text-left'>
-                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Correo Electronico </label>
-                      <input
-                        class='form-control1'
-                        id="email"
-                        type="number"
-                        placeholder='Correo Electronico'
-                        name="email"
-                      />
-                    </div>
-                  </div>
-                </div>                                
+                </div>
                 <div class="col-12">
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary my-4">Grabar</button>
@@ -294,17 +152,17 @@
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   {% if messages %}
-    {% for m in messages %}
-      <script>
-        Swal.fire({
-          "title":"Bien hecho",
-          "icon": "success",
-          "text":"{{m}}"
-        })
-      </script>
-    {% endfor %}
+  {% for m in messages %}
+  <script>
+    Swal.fire({
+      "title": "Bien hecho",
+      "icon": "success",
+      "text": "{{m}}"
+    })
+  </script>
+  {% endfor %}
   {% endif %}
-<script>
+  <script>
     window.TrackJS &&
       TrackJS.install({
         token: "ee6fab19c5a04ac1a32a645abde4613a",
@@ -312,4 +170,5 @@
       });
   </script>
 </body>
+
 </html>

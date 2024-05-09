@@ -21,9 +21,56 @@
   <!-- CSS Files -->
   <link href="../static/css/argon-design-system.css?v=1.2.2" rel="stylesheet" />
   <link rel="stylesheet" href="../static/css/Style.css">
+
+  <style>
+    .descripcion {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      color: white;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 10%;
+      box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.50);
+
+    }
+
+
+    .item:hover .descripcion {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.7);
+      opacity: 1;
+    }
+
+    img {
+      box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.50);
+    }
+
+    .descripcion h3 {
+      margin-top: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .item:hover .descripcion h3,
+    .item:hover .descripcion p {
+      opacity: 1;
+      color: white;
+    }
+
+    .descripcion p {
+      margin-bottom: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  </style>
 </head>
 
-<body style="background-image: url(../static/img/theme/Background\ Administrativa.jpg); background;">
+<body style="background-image: url(../static/img/theme/Background\ Administrativa.jpg);">
   <nav class="navbar" style="background-image: linear-gradient(rgb(13, 110, 253),rgb(119, 167, 239));">
     <div class="container">
       <a class="navbar-brand" href="#" style="">
@@ -35,84 +82,79 @@
     </div>
   </nav>
 
-  <div class="Container" style="background-color: black;">
+  <div class="Container" style="margin-bottom: 20px;">
     <h1
-      style="text-transform: uppercase;text-align: center;display: flex; justify-content: center ; color: azure; font-weight: bold; margin: 40px 0px; background-color: rgb(13, 110, 253);">
+      style="text-transform: uppercase;text-align: center;display: flex; justify-content: center ; color: black; font-weight: bold; margin: 40px 0px; text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.9); box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.50);">
       Opciones Administrativas
     </h1>
   </div>
 
-  <div class="container" style="background-color: rgba(255,255,255,0.5); padding: 1rem 2rem;border-radius: 30px; ">
-    <div class="d-flex flex-row" style="flex-wrap: wrap; flex: 400px; gap: 2rem; justify-content:space-around;">
-      <a href="/registrarMascota/{{id}}"><img src="../static/img/logo.png"
-          style="height: 300px; width: 400px; border-radius: 20px" alt="">
-        <div>
-          <h4>Registrar Mascota</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, non! </p>
+  <div style="background-color: rgb(255, 255, 255); margin: 0px 30px; padding: 5%; margin-bottom: 30px;">
+    <div class="row" style="">
+      <div class="col-md-6">
+        <a href="/registrarMascota/{{id}}">
+          <div class="item" style="margin: 20px;">
+            <img src="../static/img/theme/RegistrarMascota.jpg" alt=" Producto 1"
+              style="border-radius: 5%; height: 100%; width: 100%;">
+            <div class="descripcion">
+              <h3>Registrar Mascota</h3>
+              <p>Registra a tu mascota fácilmente. Nombre, especie, raza, ¡y listo! Mantén sus datos actualizados para
+                su seguridad..</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="/buscaMascota/{{id}}">
+          <div class="item" style="margin: 20px;">
+            <img src="../static/img/theme/ActualizarMascota.jpg" alt="Producto 1"
+              style="border-radius: 5%; height: 100%; width: 100%;">
+            <div class="descripcion">
+              <h3>Actualizar Mascota</h3>
+              <p>Actualiza los detalles de la mascota en segundos. Cambia su información básica, como nombre, raza o
+                fecha de nacimiento, para mantenerla al día y segura..</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="row" style="">
+        <div class="col-md-6">
+          <a href="/buscaContacto/{{id}}">
+            <div class="item" style="margin: 20px;">
+              <img src="../static/img/theme/PropietarioMascota.jpg" alt="Producto 1"
+                style="border-radius: 3%; height: 100%; width: 100%;">
+              <div class="descripcion">
+                <h3>Datos de Propietarios de Mascota</h3>
+                <p>Accede a la información clave de los propietarios de mascotas. Desde nombres y direcciones hasta
+                  detalles de contacto, este registro te permite gestionar eficientemente la información de los dueños
+                  para garantizar la seguridad y el bienestar de las mascotas.</p>
+              </div>
+            </div>
+          </a>
         </div>
-      </a>
-      <a href="/buscaMascota/{{id}}"><img src="../static/img/logo.png" alt="">
-        <div>
-          <h4>Actualizarr Mascota</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, ex. </p>
-        </div>
-      </a>
-      <a href="/buscaContacto/{{id}}"><img src="../static/img/logo.png"
-          style="height: 300px; width: 400px; border-radius: 20px" alt="">
-        <div>
-          <h4>Propietario Mascotas Mascota</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, temporibus!</p>
-        </div>
-      </a>
-      <a href="/buscaPoliza/{{id}}"><img src="../static/img/logo.png"
-          style="height: 300px; width: 400px; border-radius: 20px" alt="">
-        <div>
-          <h4>Poliza de seguridad</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, porro.</p>
-        </div>
-      </a>
-      <a href="/factura/{{id}}"><img src="../static/img/logo.png"
-          style="height: 300px; width: 400px; border-radius: 20px" alt="">
-        <div>
-          <h4>Facturacion</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, aperiam.</p>
-        </div>
-      </a>
-    </div>
-  </div>
 
-  <script src="../static/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="../static/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="../static/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <script src="../static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="../static/js/plugins/bootstrap-switch.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="../static/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <script src="../static/js/plugins/moment.min.js"></script>
-  <script src="../static/js/plugins/datetimepicker.js" type="text/javascript"></script>
-  <script src="../static/js/plugins/bootstrap-datepicker.min.js"></script>
-  <!-- Control Center for Argon UI Kit: parallax effects, scripts for the example pages etc -->
-  <script src="../static/js/argon-design-system.min.js?v=1.2.2" type="text/javascript"></script>
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-  {% if messages %}
-  {% for m in messages %}
-  <script>
-    Swal.fire({
-      "title": "Bien hecho",
-      "icon": "success",
-      "text": "{{m}}"
-    })
-  </script>
-  {% endfor %}
-  {% endif %}
-  <script>
-    window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-design-system-pro"
-      });
-  </script>
+
+        <script src="../static/js/core/jquery.min.js" type="text/javascript"></script>
+        <script src="../static/js/core/popper.min.js" type="text/javascript"></script>
+        <script src="../static/js/core/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../static/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+        <script src="../static/js/plugins/bootstrap-switch.js"></script>
+        <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+        <script src="../static/js/plugins/nouislider.min.js" type="text/javascript"></script>
+        <script src="../static/js/plugins/moment.min.js"></script>
+        <script src="../static/js/plugins/datetimepicker.js" type="text/javascript"></script>
+        <script src="../static/js/plugins/bootstrap-datepicker.min.js"></script>
+        <!-- Control Center for Argon UI Kit: parallax effects, scripts for the example pages etc -->
+        <script src="../static/js/argon-design-system.min.js?v=1.2.2" type="text/javascript"></script>
+        <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+        <script>
+          window.TrackJS &&
+            TrackJS.install({
+              token: "ee6fab19c5a04ac1a32a645abde4613a",
+              application: "argon-design-system-pro"
+            });
+        </script>
 </body>
 
 </html>

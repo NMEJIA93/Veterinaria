@@ -118,7 +118,7 @@ def renderRegistrarMascota(request, id):
             print("Enviar Error ")
             print("\nError en view front en def renderRegistrarPaciente\n")
             raise Exception("rol no valido")
-        return render(request, "registrarPaciente.html", {"id": id})
+        return render(request, "registrarMascota.html", {"id": id})
     except Exception as error:
         error_message = "\nError en view front en def renderRegistrarPaciente\n" + str(
             error
@@ -139,16 +139,16 @@ def RegistrarMascota(request, id):
         print(fechanace)
         print(request.GET)
         datos = {
-            "cedula": request.GET["cedulaPaciente"],
-            "nombre": request.GET["nombre"],
-            "genero": request.GET["genero"],
+            "cedulaPropietario": request.GET["cedulaPropietario"],
+            "nombrePropietario": request.GET["nombre"],
             "fechanace": str(fechanace),
             "telefono": request.GET["telefono"],
             "direccion": request.GET["direccion"],
             "email": request.GET["email"],
-            "nombreContacto": request.GET["ncontacto"],
-            "relacion": request.GET["pariente"],
-            "telefonocontacto": request.GET["telefonoc"],
+            "nombreMascota": request.GET["nombreMascota"],
+            "idMascota": request.GET["idMascota"],
+            "raza": request.GET["raza"],
+            "especie": request.GET["especie"],
         }
         respuesta = requests.post(api_url, json=datos, headers=headers)
         response = json.loads(respuesta.text)
@@ -193,17 +193,17 @@ def BuscarMascota(request, id):
     try:
         ses = Sesion.objects.get(id=id)
         headers = {"TOKEN": str(ses.token)}
-        api_url = "http://127.0.0.1:8000/paciente/" + request.GET["cedula"]
+        api_url = "http://127.0.0.1:8000/paciente/" + request.GET["idMascota"]
         respuesta = requests.get(api_url, headers=headers)
         response = json.loads(respuesta.text)
         print(response)
-        if response["Pacientes"]:
-            print(response["Pacientes"])
-            messages.add_message(request, messages.SUCCESS, "Paciente Encontrado")
+        if response["Mascotas"]:
+            print(response["Mascotas"])
+            messages.add_message(request, messages.SUCCESS, "Mascota Encontrada")
             return render(
                 request,
-                "actualizarPaciente.html",
-                {"id": id, "personas": response["Pacientes"]},
+                "actualizarMascota.html",
+                {"id": id, "mascotas": response["Mascotas"]},
             )
         raise Exception(response["message"])
     except Exception as error:
@@ -223,13 +223,11 @@ def ActualizarPaciente(request, id):
         fechanace = fecha_obj.strftime("%d/%m/%Y")
         print(request.GET)
         datos = {
-            "cedula": request.GET["cedula"],
-            "nombre": request.GET["nombre"],
-            "genero": request.GET["genero"],
             "fechanace": str(fechanace),
-            "telefono": request.GET["telefono"],
-            "direccion": request.GET["direccion"],
-            "email": request.GET["email"],
+            "nombreMascota": request.GET["nombreMascota"],
+            "idMascota": request.GET["idMascota"],
+            "raza": request.GET["raza"],
+            "especie": request.GET["especie"],
         }
         respuesta = requests.put(api_url, json=datos, headers=headers)
         response = json.loads(respuesta.text)
@@ -497,7 +495,7 @@ def renderRH(request, id):
         if response["rol"] != "RH":
             print("Enviar Error ")
             raise Exception("Tu rol debe ser RH")
-        return render(request, "personalClinica.html", {"id": id})
+        return render(request, "personalVeterinaria.html", {"id": id})
     except Exception as error:
         error_message = "\nError en view front en def renderRH: \n" + str(error)
         return render(
@@ -553,7 +551,7 @@ def RegistrarEmpleado(request, id):
         print(respuesta.status_code)
         if respuesta.status_code == 200:
             messages.add_message(request, messages.SUCCESS, "Empleado registrado")
-            return render(request, "personalClinica.html", {"id": id})
+            return render(request, "personalVeterinaria.html", {"id": id})
         else:
             raise Exception(str(response["message"]))
     except Exception as error:

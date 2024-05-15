@@ -16,10 +16,6 @@ const inputProcedimientos = document.querySelector('#vectorProcedimientos')
 const textAreaDiagnostico = document.querySelector('#diagnostico')
 
 
-
-
-
-
 eventListeners();
 
 function eventListeners() {
@@ -77,29 +73,29 @@ function eventListeners() {
 
             if (checkAyuda.checked == true) {
                 //vector_ayudas();
-                 const vAyudas = vector_ayudas();
+                const vAyudas = vector_ayudas();
                 if (vAyudas.length >= 1) {
                     inputAyudas.value = JSON.stringify(vAyudas);
                     formularioHistoriaClinica.submit();
                 } else {
                     alert("si registra Ayuda Diagnostica debe seleccionar almenos 1")
-                } 
+                }
 
             }
 
             if (checkMedicamentos.checked == true && checkboxMedicamentos.checked == true && checkboxProcedimientos.checked == false) {
-                 const vMedicamentos = vector_Medicamentos();
+                const vMedicamentos = vector_Medicamentos();
 
                 if (vMedicamentos.length >= 1) {
                     inputMedicamentos.value = JSON.stringify(vMedicamentos);
                     formularioHistoriaClinica.submit();
                     //console.log(JSON.stringify(vectorMedicamentos))
                     //console.log('se va a enviar vector Medicamentos')
-                } 
+                }
             }
 
             if (checkMedicamentos.checked == true && checkboxMedicamentos.checked == false && checkboxProcedimientos.checked == true) {
-                 const vprocedimientos = vector_Procedimientos();
+                const vprocedimientos = vector_Procedimientos();
                 if (vprocedimientos.length >= 1) {
                     inputProcedimientos.value = JSON.stringify(vprocedimientos);
                     formularioHistoriaClinica.submit();
@@ -108,14 +104,14 @@ function eventListeners() {
                 }
             }
             if (checkMedicamentos.checked == true && checkboxMedicamentos.checked == true && checkboxProcedimientos.checked == true) {
-                 vector_MedicamentosProcedimientos();
+                vector_MedicamentosProcedimientos();
                 const vMedicamentos = vector_Medicamentos();
                 const vprocedimientos = vector_Procedimientos();
                 if ((vMedicamentos.length > 0 || vprocedimientos.length > 0)) {
                     inputProcedimientos.value = JSON.stringify(vprocedimientos);
                     inputMedicamentos.value = JSON.stringify(vMedicamentos);
                     formularioHistoriaClinica.submit();
-                } 
+                }
             }
         })
 
@@ -201,12 +197,12 @@ function vector_ayudas(e) {
         }
     });
 
-/*     if (vectorAyudas.length >= 1) {
-        inputAyudas.value = JSON.stringify(vAyudas);
-        formularioHistoriaClinica.submit();
-    } else {
-        alert("si registra Ayuda Diagnostica debe seleccionar almenos 1")
-    } */
+    /*     if (vectorAyudas.length >= 1) {
+            inputAyudas.value = JSON.stringify(vAyudas);
+            formularioHistoriaClinica.submit();
+        } else {
+            alert("si registra Ayuda Diagnostica debe seleccionar almenos 1")
+        } */
     return vectorAyudas;
 }
 
@@ -235,12 +231,12 @@ function ayudaD(e) {
 
     if (checkAyuda.checked) {
         // inputPrueba.disabled = false;
+        tablaAyuda.style.display = 'block';
         console.log("Seleccionó ayuda");
         opcMedicamentos.style.pointerEvents = 'none';
         opcProcedimientos.style.pointerEvents = 'none';
         opcMedicamentos.style.display = 'none'
         opcProcedimientos.style.display = 'none'
-        tablaAyuda.style.display = 'block';
         tablaMedicamento.style.display = 'none';
         tablaProcedimiento.style.display = 'none';
         textAreaDiagnostico.style.pointerEvents = 'none';

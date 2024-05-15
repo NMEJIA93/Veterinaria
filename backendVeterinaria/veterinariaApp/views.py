@@ -87,7 +87,6 @@ class Logueo(View):
         response = {"message":message}
         return JsonResponse(response,status=status)  
 
-
 class Propietario(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args: Any, **kwargs: Any):
@@ -197,7 +196,6 @@ class Propietario(View):
         response ={"message": message} 
         return JsonResponse(response,status=status) 
     
-
 class ModuloMascota(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args: Any, **kwargs: Any):
@@ -207,14 +205,14 @@ class ModuloMascota(View):
         try:
             token = request.META.get('HTTP_TOKEN')
             sesion = Sesion.objects.get(token = token)
-            validarRol(sesion,["ADM"])
+            validarRol(sesion,["ADM","MED"])
             if id:
                 Mascotas = list(Mascota.objects.filter(id=id,estado=1).values())
             else:
                 Mascotas = list(Mascota.objects.values())
                 
             if len(Mascotas)>0:
-                message = "No hay Mascotas registradas"
+                message = "Mascotas registradas"
             else:
                 message="No hay mascotas registradas"
                 status = 400
@@ -224,6 +222,7 @@ class ModuloMascota(View):
             message = str(error)
             status = 400
         response = {"message":message, "Mascotas": Mascotas}
+        print(message)
         return JsonResponse(response,status=status)
 
     def put(self,request):
@@ -337,7 +336,6 @@ class ModuloMascota(View):
         response ={"message": message} 
         return JsonResponse(response,status=status) 
     
-
 class ModuloPersonalClinica(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args: Any, **kwargs: Any):
@@ -465,7 +463,6 @@ class ModuloPersonalClinica(View):
         response ={"message": message} 
         return JsonResponse(response,status=status)
     
-
 class ModuloMedicamento(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args: Any, **kwargs: Any):
@@ -773,7 +770,6 @@ class ConsultaMedica(View):
         response ={"message": message}
         return JsonResponse(response,status=status)
     
-
 class ModuloProcedimiento(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args: Any, **kwargs: Any):
@@ -955,7 +951,6 @@ class ModuloAyuda(View):
 
     def delete(self,request):
         pass
-
 
 class ModuloOrdenAyudaDiagnostica(View):
     def get(self,request):

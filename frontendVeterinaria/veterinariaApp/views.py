@@ -362,6 +362,7 @@ def renderbuscaContacto(request, id):
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
 
+
 """ 
 def renderPoliza(request, id):
     try:
@@ -381,6 +382,7 @@ def renderPoliza(request, id):
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
  """
+
 
 def BuscarPacienteP(request, id):
     try:
@@ -402,6 +404,7 @@ def BuscarPacienteP(request, id):
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
+
 
 """ 
 def renderbuscaPoliza(request, id):
@@ -486,6 +489,7 @@ def RegistraPoliza(request, id):
         )
  """
 
+
 # acciones con el rol RH
 def renderRH(request, id):
     try:
@@ -505,6 +509,7 @@ def renderRH(request, id):
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
 
+
 def renderRegistrarEmpleado(request, id):
     try:
         ses = Sesion.objects.get(id=id)
@@ -523,6 +528,7 @@ def renderRegistrarEmpleado(request, id):
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
+
 
 def RegistrarEmpleado(request, id):
     try:
@@ -563,6 +569,7 @@ def RegistrarEmpleado(request, id):
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
 
+
 def renderBuscaEmpleado(request, id):
     try:
         ses = Sesion.objects.get(id=id)
@@ -582,6 +589,7 @@ def renderBuscaEmpleado(request, id):
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
+
 
 def BuscarEmpleado(request, id):
     try:
@@ -607,6 +615,7 @@ def BuscarEmpleado(request, id):
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
 
+
 def renderActualizarEmpleado(request, id):
     try:
         ses = Sesion.objects.get(id=id)
@@ -626,6 +635,7 @@ def renderActualizarEmpleado(request, id):
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
+
 
 def ActualizarEmpleado(request, id):
     try:
@@ -666,6 +676,7 @@ def ActualizarEmpleado(request, id):
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
 
+
 def renderInactivarEmpleado(request, id):
     try:
         ses = Sesion.objects.get(id=id)
@@ -685,6 +696,7 @@ def renderInactivarEmpleado(request, id):
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
+
 
 def BuscarInactivar(request, id):
     try:
@@ -708,6 +720,7 @@ def BuscarInactivar(request, id):
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
 
+
 def InactivarEmpleado(request, id):
     try:
         ses = Sesion.objects.get(id=id)
@@ -719,7 +732,7 @@ def InactivarEmpleado(request, id):
         print(response)
         if respuesta.status_code == 200:
             messages.add_message(request, messages.SUCCESS, "Empleado Inactivo")
-            return render(request, "personalClinica.html", {"id": id})
+            return render(request, "personalVeterinaria.html", {"id": id})
         else:
             raise Exception(str(response["message"]))
     except Exception as error:
@@ -727,6 +740,7 @@ def InactivarEmpleado(request, id):
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
+
 
 """ 
 def renderLicenciaEmpleado(request, id):
@@ -750,6 +764,7 @@ def renderLicenciaEmpleado(request, id):
         )
 """
 
+
 def renderBuscaEmpleadoN(request, id):
     try:
         ses = Sesion.objects.get(id=id)
@@ -767,6 +782,7 @@ def renderBuscaEmpleadoN(request, id):
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
+
 
 def BuscarEmpleadoN(request, id):
     try:
@@ -791,6 +807,7 @@ def BuscarEmpleadoN(request, id):
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
+
 
 """ 
 def licenciaEmpleado(request, id):
@@ -827,6 +844,7 @@ def licenciaEmpleado(request, id):
         # raise Exception(str(error))
 """
 
+
 def renderMuestraEmpleado(request, id):
     try:
         ses = Sesion.objects.get(id=id)
@@ -853,6 +871,7 @@ def renderMuestraEmpleado(request, id):
         )
         # raise Exception(str(error))
 
+
 """ 
 def renderAsistencias(request, id):
     try:
@@ -876,127 +895,165 @@ def renderAsistencias(request, id):
         )
 """
 
-#acciones del medico
-def renderMED(request,id):
-    try:
-        ses=Sesion.objects.get(id=id)
-        headers = {'token': str(ses.token)}
-        api_url="http://127.0.0.1:8000/logueo"
-        respuesta = requests.get(api_url,headers=headers)
-        response=json.loads(respuesta.text)
-        print(response["rol"])
-        if response["rol"] != "MED":
-            print("Enviar Error ")
-            raise Exception("Tu rol debe ser Medico") 
-        return render(request, 'medico.html',{"id":id})
-    except Exception as error:
-        error_message="Error en view front en def renderMED: "+str(error)
-        return render(request,'error_template.html',{'id':id,"error_message" : error_message})
 
-def renderhistoriaClinica(request,id):
+# acciones del medico
+def renderMED(request, id):
     try:
-        ses=Sesion.objects.get(id=id)
-        headers = {'token': str(ses.token)}
-        api_url="http://127.0.0.1:8000/logueo"
-        respuesta = requests.get(api_url,headers=headers)
-        response=json.loads(respuesta.text)
+        ses = Sesion.objects.get(id=id)
+        headers = {"token": str(ses.token)}
+        api_url = "http://127.0.0.1:8000/logueo"
+        respuesta = requests.get(api_url, headers=headers)
+        response = json.loads(respuesta.text)
         print(response["rol"])
         if response["rol"] != "MED":
             print("Enviar Error ")
-            raise Exception("Tu rol debe ser Medico") 
-        return render(request, 'historiaClinica.html',{"id":id})
+            raise Exception("Tu rol debe ser Medico")
+        return render(request, "medico.html", {"id": id})
     except Exception as error:
-        error_message="Error en view front en def renderhistoriaClinica: "+str(error)
-        return render(request,'error_template.html',{'id':id,"error_message" : error_message})
+        error_message = "Error en view front en def renderMED: " + str(error)
+        return render(
+            request, "error_template.html", {"id": id, "error_message": error_message}
+        )
+
+
+def renderhistoriaClinica(request, id):
+    try:
+        ses = Sesion.objects.get(id=id)
+        headers = {"token": str(ses.token)}
+        api_url = "http://127.0.0.1:8000/logueo"
+        respuesta = requests.get(api_url, headers=headers)
+        response = json.loads(respuesta.text)
+        print(response["rol"])
+        if response["rol"] != "MED":
+            print("Enviar Error ")
+            raise Exception("Tu rol debe ser Medico")
+        return render(request, "historiaClinica.html", {"id": id})
+    except Exception as error:
+        error_message = "Error en view front en def renderhistoriaClinica: " + str(
+            error
+        )
+        return render(
+            request, "error_template.html", {"id": id, "error_message": error_message}
+        )
+
 
 def BuscarPacienteH(request, id):
-    try: 
-        ses=Sesion.objects.get(id=id)
-        headers={'TOKEN': str(ses.token)}         
-        api_url="http://127.0.0.1:8000/mascota/"+ request.GET["idMascota"]
+    try:
+        ses = Sesion.objects.get(id=id)
+        headers = {"TOKEN": str(ses.token)}
+        api_url = "http://127.0.0.1:8000/mascota/" + request.GET["idMascota"]
         respuesta = requests.get(api_url, headers=headers)
-        response=json.loads(respuesta.text)
+        response = json.loads(respuesta.text)
         print(response)
         if response["Mascotas"]:
-            print('Aqui')
+            print("Aqui")
             print(response["Mascotas"])
             messages.add_message(request, messages.SUCCESS, "Mascota Encontrada")
-           #traer los medicamentos
-            api_url="http://127.0.0.1:8000/medicamento"
+            # traer los medicamentos
+            api_url = "http://127.0.0.1:8000/medicamento"
             respuesta = requests.get(api_url, headers=headers)
-            response1=json.loads(respuesta.text)
+            response1 = json.loads(respuesta.text)
             print(response1)
             if response1["Medicamentos"]:
-                print(response1["Medicamentos"])   
-           #traer los procedimientos
-            api_url="http://127.0.0.1:8000/procedimiento"
+                print(response1["Medicamentos"])
+            # traer los procedimientos
+            api_url = "http://127.0.0.1:8000/procedimiento"
             respuesta = requests.get(api_url, headers=headers)
-            response2=json.loads(respuesta.text)
+            response2 = json.loads(respuesta.text)
             print(response2)
             if response2["Procedimientos"]:
                 print(response2["Procedimientos"])
-            #traer las ayudas
-            api_url="http://127.0.0.1:8000/ayuda"
+            # traer las ayudas
+            api_url = "http://127.0.0.1:8000/ayuda"
             respuesta = requests.get(api_url, headers=headers)
-            response3=json.loads(respuesta.text)
+            response3 = json.loads(respuesta.text)
             print(response3)
             if response3["Ayudas"]:
                 print(response3["Ayudas"])
             messages.add_message(request, messages.SUCCESS, "Mascota Encontrada")
-            return render(request, 'historiaClinica.html',{"id":id,"mascotas":response["Mascotas"], "medicamentos":response1["Medicamentos"], "procedimientos":response2["Procedimientos"], "ayudas":response3["Ayudas"]})
+            return render(
+                request,
+                "historiaClinica.html",
+                {
+                    "id": id,
+                    "mascotas": response["Mascotas"],
+                    "medicamentos": response1["Medicamentos"],
+                    "procedimientos": response2["Procedimientos"],
+                    "ayudas": response3["Ayudas"],
+                },
+            )
         raise Exception(response["message"])
     except Exception as error:
-        error_message="Error en view front en def BuscarPacienteH: "+str(error)
-        return render(request,'error_template.html',{'id':id,"error_message" : error_message})  
+        error_message = "Error en view front en def BuscarPacienteH: " + str(error)
+        return render(
+            request, "error_template.html", {"id": id, "error_message": error_message}
+        )
+
 
 def RegistrarHistoriaClinica(request, id):
     try:
-        ses=Sesion.objects.get(id=id)
-        headers={'TOKEN': str(ses.token)}   
-        api_url="http://127.0.0.1:8000/consulta"
-        print (request.GET)
-        datos={"idMascota":request.GET["idMascota"],
-                "MotivoConsulta":request.GET["motivo"],
-                "Sintomas":request.GET["sintomas"],
-                "diagnostico":request.GET["diagnostico"],
-            }
+        ses = Sesion.objects.get(id=id)
+        headers = {"TOKEN": str(ses.token)}
+        api_url = "http://127.0.0.1:8000/consulta"
+        print(request.GET)
+        datos = {
+            "idMascota": request.GET["idMascota"],
+            "MotivoConsulta": request.GET["motivo"],
+            "Sintomas": request.GET["sintomas"],
+            "diagnostico": request.GET["diagnostico"],
+        }
         try:
-            if(request.GET["vectorAyudas"]):
-                ayudas_str=request.GET["vectorAyudas"]
+            if request.GET["vectorAyudas"]:
+                ayudas_str = request.GET["vectorAyudas"]
                 ayudas = json.loads(ayudas_str)
                 print(ayudas)
-                datos["ayudasDiagnosticas"]=ayudas
+                datos["ayudasDiagnosticas"] = ayudas
         except Exception as error:
-            raise Exception("Error al traer vector Ayudas en el Views Front en: def RegistrarHistoriaClinica \n"+str(error)) 
+            raise Exception(
+                "Error al traer vector Ayudas en el Views Front en: def RegistrarHistoriaClinica \n"
+                + str(error)
+            )
 
         try:
-            if(request.GET["vectorMedicamentos"]):
-                medicamentos_str=request.GET["vectorMedicamentos"]
+            if request.GET["vectorMedicamentos"]:
+                medicamentos_str = request.GET["vectorMedicamentos"]
                 medicamentos = json.loads(medicamentos_str)
                 print(medicamentos)
-                datos["medicamentos"]=medicamentos
+                datos["medicamentos"] = medicamentos
         except Exception as error:
-            raise Exception("Error al traer vector Medicamentos en el Views Front en: def RegistrarHistoriaClinica \n"+str(error)) 
-        
+            raise Exception(
+                "Error al traer vector Medicamentos en el Views Front en: def RegistrarHistoriaClinica \n"
+                + str(error)
+            )
+
         try:
-            if(request.GET["vectorProcedimientos"]):
-                procedimientos_str=request.GET["vectorProcedimientos"]
+            if request.GET["vectorProcedimientos"]:
+                procedimientos_str = request.GET["vectorProcedimientos"]
                 procedimientos = json.loads(procedimientos_str)
                 print(procedimientos)
-                datos["procedimientos"]=procedimientos
+                datos["procedimientos"] = procedimientos
         except Exception as error:
-            raise Exception("Error al traer vector Procedimientos en el Views Front en: def RegistrarHistoriaClinica \n"+str(error)) 
-             
-        respuesta=requests.post(api_url, json=datos,headers=headers)
-        response=json.loads(respuesta.text)
+            raise Exception(
+                "Error al traer vector Procedimientos en el Views Front en: def RegistrarHistoriaClinica \n"
+                + str(error)
+            )
+
+        respuesta = requests.post(api_url, json=datos, headers=headers)
+        response = json.loads(respuesta.text)
         print(respuesta.text)
         print(response["message"])
         print(respuesta.status_code)
-        if respuesta.status_code==200:
-            messages.add_message(request, messages.SUCCESS, "HIstoria Clinica registrada")
-            return render(request,'medico.html',{'id':id})
-        else:            
+        if respuesta.status_code == 200:
+            messages.add_message(
+                request, messages.SUCCESS, "HIstoria Clinica registrada"
+            )
+            return render(request, "medico.html", {"id": id})
+        else:
             raise Exception(response["message"])
     except Exception as error:
-        error_message="Error en view front en def RegistrarHistoriaClinica: "+str(error)
-        return render(request,'error_template.html',{'id':id,"error_message" : error_message})    
+        error_message = "Error en view front en def RegistrarHistoriaClinica: " + str(
+            error
+        )
+        return render(
+            request, "error_template.html", {"id": id, "error_message": error_message}
+        )

@@ -51,6 +51,7 @@
     }
 
     .descripcion h3 {
+      font-weight: 800;
       margin-top: 0;
       opacity: 0;
       transition: opacity 0.3s ease;
@@ -73,7 +74,7 @@
 <body style="background-image: url(../static/img/theme/Background\ Administrativa.jpg);">
   <nav class="navbar" style="background-image: linear-gradient(rgb(13, 110, 253),rgb(119, 167, 239));">
     <div class="container">
-      <a class="navbar-brand" href="#" style="">
+      <a class="navbar-brand" href="#" style="text-decoration: none;">
         <img src="../static/img/icons/Logo text.png" alt="Logo" style="width: 150px; height: 40px; border-radius: 7%;">
       </a>
       <a href="/login/{{id}}" class="btn btn-danger">
@@ -84,13 +85,13 @@
 
   <div class="Container" style="margin-bottom: 20px;">
     <h1
-      style="text-transform: uppercase;text-align: center;display: flex; justify-content: center ; color: black; font-weight: bold; margin: 40px 0px; text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.9); box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.50);">
-      Opciones Administrativas
+      style="text-transform: uppercase;text-align: center;display: flex; justify-content: center ; color: white; font-weight: bold; margin: 40px 0px; text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.9); box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.50);">
+      Administrativas
     </h1>
   </div>
 
   <div style="background-color: rgb(255, 255, 255); margin: 0px 30px; padding: 5%; margin-bottom: 30px;">
-    <div class="row" style="">
+    <div class="row">
       <div class="col-md-6">
         <a href="/registrarMascota/{{id}}">
           <div class="item" style="margin: 20px;">
@@ -117,7 +118,7 @@
           </div>
         </a>
       </div>
-      <div class="row" style="">
+      <div class="row">
         <div class="col-md-6">
           <a href="/buscaContacto/{{id}}">
             <div class="item" style="margin: 20px;">

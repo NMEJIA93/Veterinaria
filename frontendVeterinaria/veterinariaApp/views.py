@@ -193,7 +193,7 @@ def BuscarMascota(request, id):
     try:
         ses = Sesion.objects.get(id=id)
         headers = {"TOKEN": str(ses.token)}
-        api_url = "http://127.0.0.1:8000/paciente/" + request.GET["idMascota"]
+        api_url = "http://127.0.0.1:8000/mascota/" + request.GET["idMascota"]
         respuesta = requests.get(api_url, headers=headers)
         response = json.loads(respuesta.text)
         print(response)
@@ -207,7 +207,7 @@ def BuscarMascota(request, id):
             )
         raise Exception(response["message"])
     except Exception as error:
-        error_message = "\nError en view front en def BuscarPaciente: \n" + str(error)
+        error_message = "\nError en view front en def BuscarMascota: \n" + str(error)
         return render(
             request, "error_template.html", {"id": id, "error_message": error_message}
         )
@@ -294,13 +294,14 @@ def RegistrarContacto(request, id):
     try:
         ses = Sesion.objects.get(id=id)
         headers = {"TOKEN": str(ses.token)}
-        api_url = "http://127.0.0.1:8000/contactoPaciente"
+        api_url = "http://127.0.0.1:8000/propietario"
         print(request.GET)
         datos = {
-            "paciente": request.GET["cedula"],
-            "nombre": request.GET["nombreC"],
-            "relacion": request.GET["pariente"],
-            "telefono": request.GET["telefonoc"],
+            "cedula": request.GET["cedula"],
+            "nombre": request.GET["nombre"],
+            "telefono": request.GET["telefono"],
+            "email": request.GET["email"],
+            "direccion": request.GET["direccion"],
         }
         respuesta = requests.post(api_url, json=datos, headers=headers)
         response = json.loads(respuesta.text)
@@ -324,17 +325,17 @@ def BuscarContactoP(request, id):
     try:
         ses = Sesion.objects.get(id=id)
         headers = {"TOKEN": str(ses.token)}
-        api_url = "http://127.0.0.1:8000/paciente/" + request.GET["cedula"]
+        api_url = "http://127.0.0.1:8000/propietario/" + request.GET["cedula"]
         respuesta = requests.get(api_url, headers=headers)
         response = json.loads(respuesta.text)
         print(response)
-        if response["Pacientes"]:
-            print(response["Pacientes"])
-            messages.add_message(request, messages.SUCCESS, "Paciente Encontrado")
+        if response["Propietarios"]:
+            print(response["Propietarios"])
+            messages.add_message(request, messages.SUCCESS, "propietario Encontrado")
             return render(
                 request,
                 "contactoPaciente.html",
-                {"id": id, "personas": response["Pacientes"]},
+                {"id": id, "personas": response["Propietarios"]},
             )
         raise Exception(response["message"])
     except Exception as error:
@@ -665,7 +666,7 @@ def ActualizarEmpleado(request, id):
         print(respuesta.status_code)
         if respuesta.status_code == 200:
             messages.add_message(request, messages.SUCCESS, "Empleado actualizado")
-            return render(request, "personalClinica.html", {"id": id})
+            return render(request, "personalVeterinaria.html", {"id": id})
         else:
             raise Exception(str(response["message"]))
     except Exception as error:

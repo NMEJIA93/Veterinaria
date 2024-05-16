@@ -46,13 +46,13 @@
         </div>
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
           <li class="nav-item ">
-            <a href="/registrarPaciente/{{id}}" class="nav-link" role="button">
+            <a href="/registrarMascota/{{id}}" class="nav-link" role="button">
               <i class="ni ni-ui-04 d-lg-none"></i>
               <span class="nav-link-inner--text">Registrar Paciente</span>
             </a>
           </li>
           <li class="nav-item ">
-            <a href="/actualizarPaciente/{{id}}" class="nav-link" role="button">
+            <a href="/actualizarPMascota/{{id}}" class="nav-link" role="button">
               <i class="ni ni-collection d-lg-none"></i>
               <span class="nav-link-inner--text">Actualizar Paciente</span>
             </a>
@@ -97,20 +97,20 @@
         <div class="card card-profile shadow mt--300">
           <div class="px-4">
             <div class="text-center mt-3">
-              <h3>ACTUALIZAR PACIENTE</h3>
-              <form class="row" role="form" method="get" action="/actualizarPaciente1/{{id}}">
+              <h3>ACTUALIZAR MASCOTA</h3>
+              <form class="row" role="form" method="get" action="/buscaMascota1/{{id}}">
                 {% for mascota in mascotas %}
                 <div class="col-6">
                   <div class='mb-4 text-left ml-10'>
                     <label class='block text-gray-900 text-sm font-bold mb-2 ml-50'>Cedula Mascota </label>
-                    <input class='form-control1 mr-4 ' id="idMascota" value="{{mascota.idMascota}}" name="idMascota"
+                    <input class='form-control1 mr-4 ' id="idMascota" value="{{mascota.id}}" name="idMascota"
                       readonly />
                   </div>
                 </div>
                 <div class="col-6">
                   <div class='mb-4 text-left'>
                     <label class='block text-gray-900 text-sm font-bold mb-2 '>Nombre completo de la Mascota </label>
-                    <input class='form-control1' id="nombreMascota" type="text" value="{{mascota.nombreMascota}}"
+                    <input class='form-control1' id="nombreMascota" type="text" value="{{mascota.nombre}}"
                       name="nombreMascota" />
                   </div>
                 </div>
@@ -120,26 +120,32 @@
                     <input class='form-control1' id="fechanace" type="date" value={{mascota.fecha_nacimiento}}
                       name="fechanace" />
                   </div>
-
-                  <div class="col-6">
-                    <div class='mb-4 text-left'>
-                      <label class='block text-gray-900 text-sm font-bold mb-2 '>Ingrese la raza de la Mascota</label>
-                      <input class='form-control1' id="raza" type="text" value={{mascota.raza}}
-                        name="raza" />
-                    </div>
-                    <div class="col-6">
-                      <div class='mb-4 text-left'>
-                        <label class='block text-gray-900 text-sm font-bold mb-2 '>Ingrese la especie de la Mascota</label>
-                        <input class='form-control1' id="especie" type="text" value={{mascota.especie}}
-                          name="especie" />
-                      </div>
-                    </div>
-                    {% endfor %}
-                    <div class="col-12">
-                      <div class="text-center">
-                        <button type="submit" class="btn btn-primary my-4">Actualizar</button>
-                      </div>
-                    </div>
+                </div>
+                <div class="col-6">
+                  <div class='mb-4 text-left'>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Ingrese la raza de la Mascota</label>
+                    <input class='form-control1' id="raza" type="text" value={{mascota.raza}} name="raza" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class='mb-4 text-left'>
+                    <label class='block text-gray-900 text-sm font-bold mb-2 '>Ingrese la especie de la
+                      Mascota</label>
+                    <input class='form-control1' id="especie" type="text" value={{mascota.Especie}} name="especie" />
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="col-12">
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary my-4"><i class="fa fa-refresh" aria-hidden="true">
+                        Actualizar</i></button>
+                  </div>
+                </div>
+                <!-- <div class="col-12">
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary my-4">Actualizar</button>
+                  </div>
+                </div> -->
               </form>
             </div>
           </div>

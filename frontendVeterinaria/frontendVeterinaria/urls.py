@@ -47,7 +47,7 @@ from veterinariaApp.views import (
     renderMED,
     renderhistoriaClinica,
     BuscarPacienteH,
-    RegistrarHistoriaClinica
+    RegistrarHistoriaClinica,
 )
 
 
@@ -67,9 +67,9 @@ urlpatterns = [
     path("buscaMascota/<id>", renderBuscaMascota),
     path("buscaMascota1/<id>", BuscarMascota),
     # path ('contactoPaciente/<id>', renderContactoPaciente),
-    # path ('buscaContacto/<id>', renderbuscaContacto),
+    path("buscaContacto/<id>", renderbuscaContacto),
     # path ('contactoPaciente1/<id>', RegistrarContacto),
-    # path ('buscaContactoP/<id>', BuscarContactoP),
+    path("buscaContactoP/<id>", BuscarContactoP),
     # rutas para el rol recursos humanos
     path("RH/<id>", renderRH),
     path("registrarEmpleado/<id>", renderRegistrarEmpleado),
@@ -84,9 +84,9 @@ urlpatterns = [
     path("buscaEmpleadoN/<id>", renderBuscaEmpleadoN),
     path("buscaEmpleadoN1/<id>", BuscarEmpleadoN),
     path("muestraEmpleado/<id>", renderMuestraEmpleado),
-    #ruta para el rol de medico
-    path('MED/<id>', renderMED),
-    path('historiaClinica/<id>', renderhistoriaClinica),
-    path('historiaClinica1/<id>', BuscarPacienteH),
-    path('historiaClinica2/<id>', RegistrarHistoriaClinica),
+    # ruta para el rol de medico
+    path("MED/<id>", renderMED),
+    path("historiaClinica/<id>", renderhistoriaClinica),
+    path("historiaClinica1/<id>", BuscarPacienteH),
+    path("historiaClinica2/<id>", RegistrarHistoriaClinica),
 ]

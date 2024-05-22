@@ -53,8 +53,10 @@
         <div class="card card-profile shadow mt--300">
           <div class="px-4">
             <div class="text-center mt-3">
-              <h3>REGISTRAR PROPIETARIO</h3>
-              <form class="row" role="form" method="get" action="/ADM/{{id}}">
+              <h3>REGISTRAR MASCOTA</h3>
+              <hr class="mb-2 bg-danger border-2 border-top border-danger" />
+              <h3>DATOS DE LA PROPIETARIO</h3>
+              <form class="row" role="form" method="get" action="/registrarMascota1/{{id}}">
                 {% csrf_token %}
                 <div class="col-6">
                   <div class='mb-4 text-left ml-10'>
@@ -66,7 +68,7 @@
                 <div class="col-6">
                   <div class='mb-4 text-left'>
                     <label class='block text-gray-900 text-sm font-bold mb-2 '>Nombre completo del Propietario </label>
-                    <input class='form-control1' id="nombre" type="text" placeholder='Nombre completo' name="nombre"
+                    <input class='form-control1' id="nombrePropietario" type="text" placeholder='Nombre completo' name="nombre"
                       required />
                   </div>
                 </div>

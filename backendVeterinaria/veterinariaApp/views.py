@@ -263,12 +263,12 @@ class ModuloMascota(View):
             validarRol(sesion,["ADM"])
             body=json.loads(request.body)
             #parametros Paciente
-            nombre = body["nombreMascota"]
+            nombreMascota = body["nombreMascota"]
             idMascota=body["idMascota"]
             raza = body["raza"]
             especie = body["especie"]
             fecha_nacimiento = body["fechanace"] 
-            validadorGeneral.validarNombre(nombre)
+            validadorGeneral.validarNombre(nombreMascota)
             mascota_new=Mascota.objects.filter(id=idMascota)
             print(mascota_new,"____________")
             print("hola",body)
@@ -281,11 +281,11 @@ class ModuloMascota(View):
                     #parametros Propietario
                     print('entro aca')
                     cedula=body["cedulaPropietario"]
-                    nombre = body["nombrePropietario"]
+                    nombrePropietario = body["nombrePropietario"]
                     telefono = body["telefono"]    
                     direccion = body["direccion"]         
                     email = body["email"]
-                    validadorGeneral.validarNombre(nombre)
+                    validadorGeneral.validarNombre(nombrePropietario)
                     validadorGeneral.validarCedula(cedula)
                     validadorGeneral.validarEmail(email)
                     validadorGeneral.validarTelefono(telefono)
@@ -295,7 +295,7 @@ class ModuloMascota(View):
                     print(propietario_new)
                     if propietario_new.exists():
                         raise Exception ("El Propietario ya existe")
-                    propietario_new = PropietarioMascota(nombre=nombre,cedula=cedula, direccion=direccion, email=email, telefono=telefono)
+                    propietario_new = PropietarioMascota(nombre=nombrePropietario,cedula=cedula, direccion=direccion, email=email, telefono=telefono)
                     propietario_new.save()
                     message= "Propietario Grabado con exito\n"
                 except Exception as error:
@@ -306,7 +306,7 @@ class ModuloMascota(View):
             #    cedula = body["cedulaPropietario"]
             #    validadorGeneral.validarCedula(cedula)
             #
-            mascota_new = Mascota(nombre=nombre,id=idMascota,raza=raza, Especie=especie, fecha_nacimiento=fecha_nacimiento, propietario=propietario_new)
+            mascota_new = Mascota(nombre=nombreMascota,id=idMascota,raza=raza, Especie=especie, fecha_nacimiento=fecha_nacimiento, propietario=propietario_new)
             mascota_new.save()
             historiaClinica={"_idHistoria":mascota_new.id,"historias":{}}
             carnetVacunas={"_idCarnet":mascota_new.id,"historias":{}}
